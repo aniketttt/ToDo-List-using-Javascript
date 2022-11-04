@@ -5,16 +5,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ani ToDo List </title>
+    <!-----Google font--->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <!--Font Awesome CDN-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <!-----link style sheet-->
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="task.js">
 </head>
 <body>
     <div class="container">
+        <div id="newtask">
+            <input type="text" placeholder="Task to be Done...">
+            <button id="push">Add</button>
+        </div>
+        <div id="tasks"></div>
     </div>
-    <div id="newtask">
-        <input type="text" placeholder="Task to be Done...">
-        <button id="push">Add</button>
-    </div>
-    <div id="tasks"></div>
+    <!------Js part-->
+    <script type="text/javascript">
+        document.querySelector('#push').onclick = function(){
+            if(document.querySelector('#newtask input').value.length == 0){
+                alert("Please Enter a Task")
+            }
+            else{
+                document.querySelector('#tasks').innerHTML += `
+                    <div class="task">
+                        <span id="taskname">
+                            ${document.querySelector('#newtask input').value}
+                        </span>
+                        <button class="delete">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </div>
+                `;
+        
+                var current_tasks = document.querySelectorAll(".delete");
+                for(var i=0; i<current_tasks.length; i++){
+                    current_tasks[i].onclick = function(){
+                        this.parentNode.remove();
+                    }
+                }
+        
+              
+        
+         
+            }
+        }
+    </script>
 </body>
 </html>
